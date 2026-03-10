@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveNow - Form Penyewaan</title>
+
+<style>
+    body{
+        font-family: Arial;
+        margin:0;
+        background:#f4f8ff;
+    }
+
+    header{
+        background:#0d4484;
+        color:white;
+        padding:30px;
+        text-align:center;
+    }
+
+    #logo{
+        float:left;
+        margin-top:-30px;
+        width:100px;
+    }
+
+    nav{
+        background:#2F6FD8;
+        padding:12px;
+        text-align:center;
+    }
+
+    nav a{
+        color:white;
+        margin:10px;
+        text-decoration:none;
+        font-weight:bold;
+    }
+
+    main{
+        display:flex;
+    }
+
+    section{
+        flex:3;
+        padding:20px;
+    }
+
+    aside{
+        flex:1;
+        background:#e8f1ff;
+        padding:20px;
+    }
+
+    form{
+        background:white;
+        padding:20px;
+        border-radius:5px;
+    }
+
+    input, select{
+        width:100%;
+        padding:8px;
+        margin-top:5px;
+        margin-bottom:15px;
+    }
+
+    button{
+        background:#2F6FD8;
+        color:white;
+        padding:10px 20px;
+        border:none;
+        cursor:pointer;
+    }
+
+    footer{
+        background:#4a84e0;
+        color:white;
+        text-align:center;
+        padding:12px;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <img id="logo" src="logo.png">
+    <h1>DriveNow - Sistem Rental Mobil</h1>
+</header>
+
+<nav>
+    <a href="home.html">Home</a>
+    <a href="mobil.html">Data Mobil</a>
+    <a href="formsewa.html">Penyewaan</a>
+</nav>
+
+<main>
+<section>
+    <h2>Form Penyewaan Mobil</h2>
+
+    <form>
+
+    <label>Nama Penyewa</label>
+    <input type="text" placeholder="Masukkan nama">
+
+    <label>Pilih Mobil</label>
+    <select>
+    <option>Toyota Avanza</option>
+    <option>Honda Brio</option>
+    <option>Toyota Fortuner</option>
+    <option>Mitsubishi Pajero</option>
+    </select>
+
+    <label>Tanggal Sewa</label>
+    <input type="date">
+
+    <label>Lama Sewa (hari)</label>
+    <input type="number">
+
+    <button type="submit">Sewa Sekarang</button>
+
+    </form>
+</section>
+
+<aside>
+    <h3>Informasi</h3>
+    <p>Silakan isi form penyewaan dengan lengkap.</p>
+    <p>Tim kami akan memproses pemesanan Anda.</p>
+</aside>
+
+</main>
+
+<footer>
+    <p>© 2026 DriveNow Rental Mobil</p>
+</footer>
+
+</body>
+</html>
