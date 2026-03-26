@@ -1,0 +1,94 @@
+body{
+    font-family: Arial;
+    margin:0;
+    background:#f4f8ff;
+}
+
+header{
+    background:#0d4484;
+    color:white;
+    padding:30px;
+    text-align:center;
+}
+
+#logo{
+    float:left;
+    margin-top:-30px;
+    width:170px;
+}
+
+nav{
+    background:#4a84e0;
+    padding:12px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    margin:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+main{
+    display:flex;
+}
+
+section{
+    flex:3;
+    padding:20px;
+}
+
+aside{
+    flex:1;
+    background:#e8f1ff;
+    padding:20px;
+}
+
+footer{
+    background:#4a84e0;
+    color:white;
+    text-align:center;
+    padding:12px;
+}
+
+/* TABLE (halaman mobil) */
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table, th, td{
+    border:1px solid #999;
+}
+
+th, td{
+    padding:10px;
+    text-align:center;
+}
+
+/* FORM (halaman sewa) */
+form{
+    background:white;
+    padding:20px;
+    border-radius:5px;
+}
+
+input, select{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+
+button{
+    background:#2F6FD8;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    cursor:pointer;
+}
+
+.center{
+    text-align:center;
+}
