@@ -1,8 +1,3 @@
-// ========================================
-// script.js - DriveNow Rental Mobil
-// VERSI DENGAN DEBUG GAMBAR
-// ========================================
-
 let daftarMobil = [];
 let daftarPenyewaan = [];
 let daftarTestimoni = [];
@@ -11,15 +6,6 @@ let editingMobilId = null;
 let gambarTerpilih = null;
 let gambarPreviewUrl = null;
 
-// CEK APAKAH GAMBAR BISA DIAKSES
-function cekGambar(namaFile) {
-    const img = new Image();
-    img.onload = () => console.log(`✅ Gambar ditemukan: ${namaFile}`);
-    img.onerror = () => console.log(`❌ Gambar TIDAK ditemukan: ${namaFile} - cek nama file dan lokasi`);
-    img.src = namaFile;
-}
-
-// Data mobil default - PAKAI GAMBAR LOKAL
 const defaultMobil = [
     { id: 1, nama: 'Toyota Avanza', jenis: 'MPV', harga: 350000, status: 'Tersedia', gambar: 'avanza.jpg' },
     { id: 2, nama: 'Honda Brio', jenis: 'City Car', harga: 300000, status: 'Disewa', gambar: 'brio.jpg' },
@@ -29,8 +15,7 @@ const defaultMobil = [
     { id: 6, nama: 'Honda Civic', jenis: 'Sedan', harga: 700000, status: 'Tersedia', gambar: 'civic.jpg' },
     { id: 7, nama: 'Toyota Calya', jenis: 'MPV', harga: 280000, status: 'Tersedia', gambar: 'calya.jpg' }
 ];
-    
-// Test gambar saat halaman dimuat
+
 setTimeout(() => {
     console.log('🔍 CEK GAMBAR:');
     defaultMobil.forEach(m => cekGambar(m.gambar));
@@ -190,7 +175,7 @@ function renderTabelMobil() {
         }
     }
     
-    if (filteredMobil.length === 0) html = '<p style="text-align:center; padding:40px;">🚗 Tidak ada data mobil</p>';
+    if (filteredMobil.length === 0) html = '<p style="text-align:center; padding:40px;">Tidak ada data mobil</p>';
     container.innerHTML = html;
 }
 
@@ -206,7 +191,7 @@ function renderMobilGalleryByJenis() {
     
     const mobilTersedia = daftarMobil.filter(m => m.status === 'Tersedia' && m.jenis === filterJenis);
     if (mobilTersedia.length === 0) {
-        container.innerHTML = `<p style="text-align:center; padding:40px;">🚗 Tidak ada mobil ${filterJenis} yang tersedia</p>`;
+        container.innerHTML = `<p style="text-align:center; padding:40px;">Tidak ada mobil ${filterJenis} yang tersedia</p>`;
         return;
     }
     
@@ -247,7 +232,7 @@ function renderRiwayatSewa() {
     const tbody = document.getElementById('riwayatSewaBody');
     if (!tbody) return;
     if (daftarPenyewaan.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center">📝 Belum ada riwayat penyewaan</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center">Belum ada riwayat penyewaan</td></tr>';
         return;
     }
     tbody.innerHTML = daftarPenyewaan.map((sewa, index) => `
@@ -429,7 +414,7 @@ function setActiveNav() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚗 DriveNow Loaded!');
+    console.log('DriveNow Loaded!');
     loadData();
     loadDarkModePreference();
     setActiveNav();
