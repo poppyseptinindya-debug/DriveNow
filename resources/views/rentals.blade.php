@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveNow | Form Penyewaan</title>
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <img id="logo" src="{{ asset('logo.png') }}" alt="Logo DriveNow" onerror="this.src='https://placehold.co/80x80/1e4a76/white?text=DN'">
+    </div>
+    <div class="header-center">
+        <h1>DriveNow - Rental Mobil</h1>
+        <p>Isi form untuk menyewa mobil</p>
+    </div>
+    <button id="darkModeBtn" onclick="toggleDarkMode()">🌙</button>
+</header>
+
+<nav>
+    <a href="{{ route('dashboard') }}">Home</a>
+    <a href="{{ route('cars.index') }}">Kelola Mobil</a>
+    <a href="{{ route('rentals.index') }}" class="active">Penyewaan</a>
+    <a href="{{ route('tentang') }}">Tentang</a>
+</nav>
+
+<main>
+    <div class="form-container">
+        <h2 style="text-align:center; margin-bottom:25px; color:var(--secondary)">Form Penyewaan Mobil</h2>
+
+        <form id="formSewa">
+            <div class="form-group">
+                <label>👤 Nama Lengkap *</label>
+                <input type="text" id="namaPenyewa" required placeholder="Masukkan nama lengkap">
+            </div>
+
+            <div class="form-group">
+                <label>📧 Email *</label>
+                <input type="email" id="emailPenyewa" required placeholder="contoh: email@domain.com">
+            </div>
+
+            <div class="form-group">
+                <label>📞 No. Telepon *</label>
+                <input type="tel" id="telpPenyewa" required placeholder="0812-3456-7890">
+            </div>
+
+            <div class="form-group">
+                <label>🚙 Pilih Jenis Mobil *</label>
+                <select id="filterJenisMobil" required>
+                    <option value="">-- Pilih Jenis Mobil --</option>
+                    <option value="MPV">MPV (Keluarga)</option>
+                    <option value="SUV">SUV (Offroad)</option>
+                    <option value="City Car">City Car (Perkotaan)</option>
+                    <option value="Sedan">Sedan (Mewah)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>🚗 Pilih Mobil (klik kartu di bawah) *</label>
+                <div id="mobilGalleryContainer" style="max-height: 400px; overflow-y: auto;">
+                    <p style="text-align:center; padding:40px; color:var(--text-light);">🔍 Silakan pilih jenis mobil terlebih dahulu</p>
+                </div>
+                <input type="hidden" id="selectedMobilId" value="">
+                <input type="hidden" id="selectedMobilNama" value="">
+                <input type="hidden" id="selectedMobilHarga" value="">
+            </div>
+
+            <div class="form-group">
+                <label>📅 Tanggal Sewa *</label>
+                <input type="date" id="tanggalSewa" required>
+            </div>
+
+            <div class="form-group">
+                <label>⏱️ Lama Sewa (hari) *</label>
+                <input type="number" id="lamaSewa" min="1" max="30" required placeholder="Contoh: 3">
+            </div>
+
+            <div id="totalHargaDisplay" style="background: var(--primary-soft); padding: 15px; border-radius: 14px; text-align: center; margin: 15px 0;">
+                💰 Total Harga: <strong id="totalHarga">Rp 0</strong>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%">✅ Sewa Sekarang</button>
+            <button type="reset" style="width:100%; margin-top:10px; background:var(--gray); color:white; border:none; padding:12px; border-radius:12px; cursor:pointer;">↺ Reset Form</button>
+        </form>
+
+        <div id="pesanSukses" style="display:none; margin-top:20px; padding:15px; background:#d4f0e0; color:#4a7a5a; border-radius:14px; text-align:center;"></div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 DriveNow Rental Mobil</p>
+</footer>
+
+<div id="scrollToTop">↑</div>
+<script src="{{ asset('script.js') }}"></script>
+</body>
+</html>
