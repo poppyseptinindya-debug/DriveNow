@@ -9,12 +9,13 @@ Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
+Route::resource('cars', CarController::class);
 
 Route::get('/rentals', [RentalController::class, 'index'])->name('rentals.index');
 
-Route::get('/hitung/{a}/{b}', function ($a, $b) {
-    return "Hasil penjumlahan {$a} + {$b} = " . ($a + $b);
-});
-
 Route::view('/tentang', 'tentang')->name('tentang');
+Route::view('/kontak', 'kontak')->name('kontak');
+
+Route::get('/hitung/{a}/{b}', function ($a, $b) {
+    return "Hasil penjumlahan " . $a . " + " . $b . " = " . ($a + $b);
+});
