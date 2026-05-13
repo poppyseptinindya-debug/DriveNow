@@ -14,7 +14,8 @@ class Rental extends Model
         'customer_name',
         'rental_date',
         'days',
-        'total_price'
+        'total_price',
+        'status'
     ];
 
     protected $casts = [

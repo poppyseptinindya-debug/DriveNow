@@ -12,15 +12,15 @@
 
 @include('partials.navbar')
 
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
+<main>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
-@if(session('error'))
-    <div class="alert alert-error">{{ session('error') }}</div>
-@endif
+    @if(session('error'))
+        <div class="alert alert-error">{{ session('error') }}</div>
+    @endif
 
-<main class="container">
     @yield('content')
 </main>
 
@@ -30,6 +30,6 @@
 
 <div id="scrollToTop">↑</div>
 <script src="{{ asset('script.js') }}"></script>
-@stack('scripts')  
+@stack('scripts')
 </body>
 </html>

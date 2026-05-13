@@ -10,44 +10,43 @@
 </div>
 
 <div class="stats-grid">
-    <x-stat-card judul="Total Mobil" nilai="7" ikon="🚗" />
-    <x-stat-card judul="Mobil Tersedia" nilai="5" ikon="✅" />
-    <x-stat-card judul="Mobil Disewa" nilai="2" ikon="🔴" />
-    <x-stat-card judul="Total Penyewaan" nilai="12" ikon="📝" />
+    <div class="stat-card">
+        <h3>Total Mobil</h3>
+        <div class="number">{{ $totalMobil }}</div>
+    </div>
+    <div class="stat-card">
+        <h3>Mobil Tersedia</h3>
+        <div class="number">{{ $mobilTersedia }}</div>
+    </div>
+    <div class="stat-card">
+        <h3>Mobil Disewa</h3>
+        <div class="number">{{ $mobilDisewa }}</div>
+    </div>
+    <div class="stat-card">
+        <h3>Total Penyewaan</h3>
+        <div class="number">{{ $totalPenyewaan }}</div>
+    </div>
 </div>
 
 <div class="section-title">
     <h2>🔥 Mobil Populer</h2>
 </div>
-<div class="gallery" id="popularMobilContainer">
-    @forelse($popularMobil ?? [] as $mobil)
+<div class="gallery">
+    @foreach($mobilPopuler as $mobil)
     <div class="mobil-card">
-        <img src="{{ asset($mobil['gambar']) }}" alt="{{ $mobil['nama'] }}">
-        <h4>{{ $mobil['nama'] }}</h4>
-        <p>Rp {{ number_format($mobil['harga'], 0, ',', '.') }}</p>
+        <img src="{{ asset($mobil->gambar ?? 'images/car-default.jpg') }}" alt="{{ $mobil->nama }}">
+        <div class="card-body">
+            <h4>{{ $mobil->nama }}</h4>
+            <p class="jenis">{{ $mobil->jenis }}</p>
+            <p class="harga">Rp {{ number_format($mobil->harga, 0, ',', '.') }}/hari</p>
+            <span class="status-badge status-{{ strtolower($mobil->status) }}">{{ $mobil->status }}</span>
+        </div>
     </div>
-    @empty
-    <p>Loading...</p>
-    @endforelse
+    @endforeach
 </div>
+
+<div class="section-title" style="margin-top: 40px;">
+    <h2>⭐ Riwayat Penilaian Penyewaan</h2>
+</div>
+<div class="testimoni-grid" id="testimoniContainer"></div>
 @endsection
-
-@push('scripts')
-<script>
-    console.log('Halaman Dashboard loaded');
-
-    function updateStats() {
-        let mobil = JSON.parse(localStorage.getItem('mobil')) || [];
-        let tersedia = mobil.filter(m => m.status === 'Tersedia').length;
-        let disewa = mobil.filter(m => m.status === 'Disewa').length;
-
-        document.querySelectorAll('.stat-card .number').forEach((el, i) => {
-            if(i === 0) el.innerText = mobil.length;
-            if(i === 1) el.innerText = tersedia;
-            if(i === 2) el.innerText = disewa;
-        });
-    }
-
-    updateStats();
-</script>
-@endpush
