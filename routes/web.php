@@ -4,6 +4,10 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WeatherController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\VisitController;
 
 // Halaman publik (tanpa login)
 Route::get('/', [DashboardController::class, 'index']);
@@ -30,6 +34,24 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+});
+
+Route::get('/api/cuaca', [WeatherController::class, 'fetch'])->name('weather.fetch');
+Route::get('/cuaca', function () {
+    return redirect()->route('dashboard');
+});
+
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+Route::get('/api/search', [SearchController::class, 'search'])->name('search.api');
+
+Route::middleware(['auth'])->group(function () {
+Route::get('/preferensi', [PreferenceController::class, 'index'])->name('preferences.index');
+Route::post('/preferensi/simpan', [PreferenceController::class, 'save'])->name('preferences.save');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/kunjungan', [VisitController::class, 'index'])->name('visits.index');
+    Route::delete('/kunjungan/reset', [VisitController::class, 'reset'])->name('visits.reset');
 });
 
 require __DIR__.'/auth.php';
