@@ -8,11 +8,9 @@ Dibuat oleh: **Poppy Septi Nindya**
 
 Program Studi Sistem Informasi Fakultas Ilmu Komputer - Universitas Jember
 
-🎥 Demo Video: *[Masukkan Link Video Demo]*
+Demo Video: *https://youtu.be/SoxV-tCwr2I*
 
-🌐 URL Deploy: *[Masukkan Link Deploy Proyek]*
-
-🎯 Tujuan Pengembangan
+**Tujuan Pengembangan**
 DriveNow dikembangkan untuk:
 - Mempermudah pelanggan dalam mencari dan melakukan pemesanan mobil secara online dari mana saja dan kapan saja.
 - Mengotomatisasi pemantauan status ketersediaan armada kendaraan secara transparan.
@@ -21,12 +19,10 @@ DriveNow dikembangkan untuk:
 - Menyediakan sarana feedback (rating & ulasan) dari pelanggan pasca penyewaan untuk terus meningkatkan kualitas armada.
 - Mendukung digitalisasi dan modernisasi layanan jasa transportasi mandiri agar lebih efisien dan terstruktur.
 
-✨ Fitur Utama
-Aplikasi DriveNow menyediakan fitur lengkap yang dirancang untuk memenuhi kebutuhan pelanggan maupun pengelola rental mobil.
-
-👤 Fitur Pengguna (Customer)
+**Fitur Utama**
+Fitur Pelanggan 
 * **Autentikasi**
-  * Registrasi akun baru
+  * Registrasi
   * Login akun
   * Logout akun
   * Remember Me
@@ -52,7 +48,7 @@ Aplikasi DriveNow menyediakan fitur lengkap yang dirancang untuk memenuhi kebutu
 * **Kontak & Saran**
   * Mengirim pesan saran, kritik, atau masukan langsung ke admin melalui form kontak
 
-👨💼 Fitur Admin
+Fitur Admin
 * **Autentikasi**
   * Login khusus admin
   * Logout akun
@@ -63,7 +59,7 @@ Aplikasi DriveNow menyediakan fitur lengkap yang dirancang untuk memenuhi kebutu
   * Melihat total pelanggan terdaftar
   * Melihat total transaksi penyewaan
 * **Pengelolaan Mobil**
-  * Menambah unit mobil baru beserta upload gambar/foto mobil
+  * Menambah unit mobil baru beserta upload gambar
   * Mengubah data informasi mobil (nama mobil, jenis mobil, harga sewa, warna, tahun, dan status ketersediaan)
   * Menghapus unit mobil dari sistem
 * **Pengelolaan Transaksi Penyewaan**
@@ -77,30 +73,14 @@ Aplikasi DriveNow menyediakan fitur lengkap yang dirancang untuk memenuhi kebutu
   * Membaca seluruh pesan saran/kritik dari pelanggan
   * Menghapus pesan saran/kritik
 
-🛠️ Teknologi yang Digunakan
-* **Backend**
-  * **PHP 8.3+** : Bahasa pemrograman utama untuk membangun logika bisnis aplikasi.
-  * **Laravel 13** : Framework PHP utama untuk routing, middleware, autentikasi (menggunakan Laravel Breeze), migrasi database, dan Eloquent ORM.
-* **Frontend**
-  * **HTML5 & CSS3** : Menyusun struktur dan tampilan antarmuka yang modern, bersih, serta responsif.
-  * **Tailwind CSS** : Framework CSS yang digunakan untuk styling antarmuka dengan desain premium.
-  * **JavaScript** : Digunakan untuk interaksi dinamis seperti AJAX (pengiriman form kontak dan live search), pembaruan status, modal konfirmasi, dan pengelolaan dark/light mode.
-  * **Blade Template Engine** : Template engine bawaan Laravel untuk menampilkan data dinamis secara efisien.
-* **Database**
-  * **MySQL** : Menyimpan seluruh data relasional aplikasi (data user, mobil, transaksi rental, dan kontak saran).
-* **Tools Development**
-  * **GitHub** : Sebagai platform version control dan kolaborasi kode.
-  * **Laragon / XAMPP** : Local development server untuk menjalankan server PHP & MySQL secara lokal.
-  * **Visual Studio Code** : Code editor utama dalam pengembangan sistem.
-
-🗄️ Struktur Database
+**Struktur Database**
 Database DriveNow terdiri dari beberapa tabel utama berikut:
 - **`users`** : Menyimpan data akun pengguna dengan peran (*role*) sebagai `admin` atau `customer`.
 - **`cars`** : Menyimpan data unit mobil (nama mobil, jenis mobil seperti MPV/SUV/Sedan/City Car, harga sewa per hari, warna, tahun, gambar, dan status ketersediaan).
 - **`rentals`** : Mencatat seluruh transaksi pemesanan sewa mobil (ID mobil, ID user, tanggal sewa, durasi sewa, total harga, metode pembayaran, bukti transfer, rating, ulasan, dan status penyewaan).
 - **`contacts`** : Menyimpan pesan masukan, saran, dan kritik yang dikirimkan oleh pengunjung/pelanggan.
 
-📊 Status Penyewaan
+**Status Penyewaan**
 Sistem menggunakan beberapa status transaksi penyewaan untuk memantau proses rental mobil:
 - **`menunggu_konfirmasi`** : Tahap awal setelah customer mengajukan pemesanan sewa.
 - **`menunggu_pembayaran`** : Permintaan disetujui admin dan menunggu customer melakukan pembayaran (jika Transfer Bank).
@@ -110,13 +90,6 @@ Sistem menggunakan beberapa status transaksi penyewaan untuk memantau proses ren
 - **`ditolak`** : Pengajuan sewa ditolak oleh admin atau dibatalkan langsung oleh customer saat statusnya masih pending.
 
 🔐 Akun Akses Default
-Berikut akun pengujian bawaan yang dapat digunakan:
 * **Admin**
   * Email: `admin@drivenow.com`
   * Password: `password`
-* **Customer / User**
-  * Email: `budi@customer.com`
-  * Password: `password`
-
-📄 Lisensi
-Proyek ini dikembangkan untuk keperluan akademik dan pembelajaran sebagai Proyek Akhir Mata Kuliah Pemrograman Berbasis Website Program Studi Sistem Informasi Universitas Jember. Penggunaan, modifikasi, dan pengembangan lebih lanjut diperbolehkan untuk tujuan pendidikan dengan tetap mencantumkan kredit kepada pengembang.
