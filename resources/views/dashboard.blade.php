@@ -1,147 +1,105 @@
 @extends('layouts.app')
 
 @section('title', 'DriveNow | Dashboard')
-@section('active-dashboard', 'class="active"')
 
 @section('content')
-<div class="hero">
-    <h2>Selamat Datang di DriveNow</h2>
-    <p>Sewa mobil favorit Anda dengan harga terbaik dan pelayanan terpercaya</p>
-</div>
+<div class="space-y-8 animate-fade-in">
+    <!-- Welcome Hero -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-indigo-900 p-8 shadow-xl text-white">
+        <div class="relative z-10 space-y-4 max-w-xl">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                ⭐ Selamat Datang Kembali!
+            </span>
+            <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Temukan Mobil Pilihan Anda, {{ Auth::user()->name }}!</h1>
+            <p class="text-indigo-200/80 text-sm sm:text-base">
+                Nikmati kenyamanan sewa mobil premium dengan proses cepat, harga transparan, dan unit yang terjamin kebersihannya.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+                <a href="{{ route('cars.catalog') }}" class="px-5 py-2.5 text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl transition-all shadow-md shadow-indigo-600/20">
+                    Cari Mobil <i class="fas fa-search ml-1"></i>
+                </a>
+                <a href="{{ route('rentals.history') }}" class="px-5 py-2.5 text-sm font-semibold bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all">
+                    Riwayat Sewa
+                </a>
+            </div>
+        </div>
+        <!-- Decorative Car Image/Icon -->
+        <div class="absolute right-0 bottom-0 opacity-10 translate-y-1/6 translate-x-1/6 scale-150 hidden md:block">
+            <i class="fas fa-car text-[220px]"></i>
+        </div>
+    </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Total Mobil</h3>
-                <div class="number">{{ $totalMobil ?? 0 }}</div>
+    <!-- Quick Info Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-3xl flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+            <div class="h-12 w-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl">
+                <i class="fas fa-history"></i>
             </div>
-            <div class="stat-card">
-                <h3>Mobil Tersedia</h3>
-                <div class="number">{{ $mobilTersedia ?? 0 }}</div>
+            <div>
+                <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Penyewaan Anda</p>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-100">{{ $totalPenyewaan }} Transaksi</h3>
             </div>
-            <div class="stat-card">
-                <h3>Mobil Disewa</h3>
-                <div class="number">{{ $mobilDisewa ?? 0 }}</div>
+        </div>
+        <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-3xl flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+            <div class="h-12 w-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl">
+                <i class="fas fa-check-circle"></i>
             </div>
-            <div class="stat-card">
-                <h3>Total Penyewaan</h3>
-                <div class="number">{{ $totalPenyewaan ?? 0 }}</div>
+            <div>
+                <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Mobil Siap Jalan</p>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-100">{{ $mobilTersedia }} Unit Tersedia</h3>
+            </div>
+        </div>
+        <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-3xl flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+            <div class="h-12 w-12 rounded-2xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl">
+                <i class="fas fa-car"></i>
+            </div>
+            <div>
+                <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Armada Mobil</p>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-100">{{ $totalMobil }} Unit Armada</h3>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="weather-widget">
-            <div class="weather-header">
-                <i class="fas fa-cloud-sun"></i> Cuaca Surabaya
-            </div>
-            <div id="weatherLoading" class="text-center py-3">
-                <div class="spinner-border spinner-border-sm text-primary"></div>
-                <p class="small mt-1">Loading...</p>
-            </div>
-            <div id="weatherResult" class="d-none text-center">
-                <div class="weather-temp-large">
-                    <span id="widgetTemp">--</span>°C
+    <!-- Featured Cars section -->
+    <div class="space-y-4">
+        <div class="flex justify-between items-center">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Rekomendasi Mobil Terbaru</h2>
+            <a href="{{ route('cars.catalog') }}" class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Lihat Semua <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @forelse($mobilPopuler as $car)
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                    <div class="relative bg-slate-100 dark:bg-slate-950 h-44 flex items-center justify-center overflow-hidden">
+                        @if($car->gambar)
+                            <img src="{{ str_starts_with($car->gambar, 'cars/') ? asset('storage/' . $car->gambar) : asset($car->gambar) }}" alt="{{ $car->nama_mobil }}" class="w-full h-full object-cover">
+                        @else
+                            <i class="fas fa-car-side text-slate-300 dark:text-slate-800 text-[64px]"></i>
+                        @endif
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div class="space-y-1">
+                            <span class="text-slate-400 dark:text-slate-500 text-xs font-semibold uppercase">{{ $car->jenis_mobil }}</span>
+                            <h3 class="font-bold text-slate-800 dark:text-white text-lg leading-tight">{{ $car->nama_mobil }}</h3>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                            <div>
+                                <p class="text-xs text-slate-400 dark:text-slate-500">Harga per Hari</p>
+                                <p class="font-bold text-indigo-600 dark:text-indigo-400 text-base">Rp {{ number_format($car->harga_sewa_per_hari, 0, ',', '.') }}</p>
+                            </div>
+                            <a href="{{ route('cars.show', $car) }}" class="px-4 py-2 text-xs font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/40 dark:text-indigo-400 dark:hover:bg-indigo-950/80 rounded-xl transition-all">
+                                Detail Mobil
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="weather-desc-small" id="widgetDesc">--</div>
-                <div class="weather-details">
-                    <span><i class="fas fa-tint"></i> <span id="widgetHumidity">--</span>%</span>
-                    <span><i class="fas fa-wind"></i> <span id="widgetWind">--</span> km/h</span>
+            @empty
+                <div class="col-span-full py-12 text-center text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">
+                    <i class="fas fa-car-crash text-4xl text-slate-300 dark:text-slate-700 mb-2"></i>
+                    <p>Maaf, belum ada armada mobil yang tersedia saat ini.</p>
                 </div>
-            </div>
-            <div id="weatherError" class="text-warning small text-center d-none">
-                <i class="fas fa-exclamation-triangle"></i> Gagal ambil data
-            </div>
+            @endforelse
         </div>
     </div>
 </div>
-
-<div class="section-title">
-    <h2>🔥 Mobil Populer</h2>
-</div>
-<div class="gallery" id="popularMobilContainer"></div>
-
-<div class="section-title" style="margin-top: 40px;">
-    <h2>⭐ Riwayat Penilaian Penyewaan</h2>
-</div>
-<div class="testimoni-grid" id="testimoniContainer"></div>
 @endsection
-
-@push('styles')
-<style>
-    .weather-widget {
-        background: linear-gradient(135deg, #1e4a76, #2c5f8a);
-        border-radius: 20px;
-        padding: 15px;
-        color: white;
-        height: 100%;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    .weather-header {
-        font-size: 14px;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 10px;
-        opacity: 0.9;
-    }
-    .weather-temp-large {
-        font-size: 42px;
-        font-weight: 700;
-        text-align: center;
-        line-height: 1;
-    }
-    .weather-desc-small {
-        text-align: center;
-        font-size: 14px;
-        margin: 8px 0;
-        text-transform: capitalize;
-    }
-    .weather-details {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        font-size: 12px;
-        margin-top: 10px;
-    }
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    @media (min-width: 768px) {
-        .stats-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
-</style>
-@endpush
-
-@push('scripts')
-<script>
-    async function loadWeatherWidget() {
-        try {
-            const response = await fetch('/api/cuaca');
-            const json = await response.json();
-
-            if (json.success && json.data) {
-                document.getElementById('widgetTemp').innerHTML = json.data.temp;
-                document.getElementById('widgetDesc').innerHTML = json.data.description;
-                document.getElementById('widgetHumidity').innerHTML = json.data.humidity;
-                document.getElementById('widgetWind').innerHTML = json.data.wind;
-
-                document.getElementById('weatherLoading').classList.add('d-none');
-                document.getElementById('weatherResult').classList.remove('d-none');
-            } else {
-                throw new Error('Gagal');
-            }
-        } catch (err) {
-            document.getElementById('weatherLoading').classList.add('d-none');
-            document.getElementById('weatherError').classList.remove('d-none');
-            console.error('Weather error:', err);
-        }
-    }
-
-    loadWeatherWidget();
-</script>
-@endpush

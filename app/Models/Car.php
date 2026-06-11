@@ -10,11 +10,12 @@ class Car extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 'jenis', 'harga', 'status', 'gambar'
+        'nama_mobil', 'jenis_mobil', 'harga_sewa_per_hari', 'status', 'gambar', 'warna', 'tahun'
     ];
 
     protected $casts = [
-        'harga' => 'decimal:2',
+        'harga_sewa_per_hari' => 'integer',
+        'tahun' => 'integer',
     ];
 
     public function scopeTersedia($query)
@@ -24,7 +25,7 @@ class Car extends Model
 
     public function scopeDisewa($query)
     {
-        return $query->where('status', 'Disewa');
+        return $query->where('status', 'Disewakan');
     }
 
     public function rentals()

@@ -11,20 +11,31 @@ class Rental extends Model
 
     protected $fillable = [
         'car_id',
-        'customer_name',
-        'rental_date',
-        'days',
-        'total_price',
-        'status'
+        'user_id',
+        'tanggal_sewa',
+        'lama_sewa',
+        'total_harga',
+        'status_penyewaan',
+        'metode_pembayaran',
+        'bukti_transfer',
+        'rating',
+        'review'
     ];
 
     protected $casts = [
-        'rental_date' => 'date',
-        'total_price' => 'decimal:2'
+        'tanggal_sewa' => 'date',
+        'lama_sewa' => 'integer',
+        'total_harga' => 'integer',
+        'rating' => 'integer'
     ];
 
     public function car()
     {
         return $this->belongsTo(Car::class, 'car_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

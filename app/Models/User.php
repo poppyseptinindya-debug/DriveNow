@@ -46,6 +46,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function rentals()
+    {
+        return $this->hasMany(Rental::class, 'user_id');
+    }
+
     // Helper method untuk cek role
     public function isAdmin()
     {

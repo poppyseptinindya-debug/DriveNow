@@ -10,10 +10,12 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 100);
-            $table->enum('jenis', ['MPV', 'SUV', 'City Car', 'Sedan']);
-            $table->decimal('harga', 10, 2);
-            $table->enum('status', ['Tersedia', 'Disewa'])->default('Tersedia');
+            $table->string('nama_mobil', 100);
+            $table->enum('jenis_mobil', ['MPV', 'SUV', 'City Car', 'Sedan']);
+            $table->integer('harga_sewa_per_hari');
+            $table->enum('status', ['Tersedia', 'Disewakan'])->default('Tersedia');
+            $table->string('warna')->nullable();
+            $table->integer('tahun')->nullable();
             $table->string('gambar')->nullable();
             $table->timestamps();
         });

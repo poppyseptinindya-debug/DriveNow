@@ -1,83 +1,107 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Mobil - DriveNow')
+@section('title', 'DriveNow | Tambah Mobil')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card-custom">
-            <div class="card-header-custom">
-                <h4 class="mb-0 fw-bold"><i class="fas fa-plus-circle me-2"></i> Form Tambah Mobil</h4>
-            </div>
-            <div class="card-body p-4">
-                <form action="{{ route('cars.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    <div class="mb-3">
-                        <label for="nama" class="form-label fw-bold">Nama Mobil <span class="text-danger">*</span></label>
-                        <input type="text" name="nama" id="nama" class="form-control form-control-custom @error('nama') is-invalid @enderror" value="{{ old('nama') }}" placeholder="Contoh: Toyota Avanza" required>
-                        @error('nama')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="jenis" class="form-label fw-bold">Jenis Mobil <span class="text-danger">*</span></label>
-                            <select name="jenis" id="jenis" class="form-select form-control-custom @error('jenis') is-invalid @enderror" required>
-                                <option value="">-- Pilih Jenis --</option>
-                                <option value="MPV" {{ old('jenis') == 'MPV' ? 'selected' : '' }}>MPV (Keluarga)</option>
-                                <option value="SUV" {{ old('jenis') == 'SUV' ? 'selected' : '' }}>SUV (Offroad)</option>
-                                <option value="City Car" {{ old('jenis') == 'City Car' ? 'selected' : '' }}>City Car (Perkotaan)</option>
-                                <option value="Sedan" {{ old('jenis') == 'Sedan' ? 'selected' : '' }}>Sedan (Mewah)</option>
-                            </select>
-                            @error('jenis')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="harga" class="form-label fw-bold">Harga per Hari <span class="text-danger">*</span></label>
-                            <input type="number" name="harga" id="harga" class="form-control form-control-custom @error('harga') is-invalid @enderror" value="{{ old('harga') }}" placeholder="350000" required>
-                            @error('harga')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="status" class="form-label fw-bold">Status <span class="text-danger">*</span></label>
-                            <select name="status" id="status" class="form-select form-control-custom @error('status') is-invalid @enderror" required>
-                                <option value="Tersedia" {{ old('status') == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
-                                <option value="Disewa" {{ old('status') == 'Disewa' ? 'selected' : '' }}>Disewa</option>
-                            </select>
-                            @error('status')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="gambar" class="form-label fw-bold">Gambar Mobil</label>
-                            <input type="file" name="gambar" id="gambar" class="form-control form-control-custom @error('gambar') is-invalid @enderror" accept="image/*">
-                            <small class="text-muted">Format: JPG, JPEG, PNG. Maksimal 2MB</small>
-                            @error('gambar')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-between mt-4">
-                        <button type="submit" class="btn btn-success px-4">
-                            <i class="fas fa-save me-2"></i> Simpan
-                        </button>
-                        <a href="{{ route('cars.index') }}" class="btn btn-secondary px-4">
-                            <i class="fas fa-arrow-left me-2"></i> Kembali
-                        </a>
-                    </div>
-                </form>
-            </div>
+<div class="max-w-2xl mx-auto space-y-6">
+    <div class="flex items-center gap-4">
+        <a href="{{ route('admin.cars.index') }}" class="h-10 w-10 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Tambah Mobil Baru</h1>
+            <p class="text-slate-500 dark:text-slate-400 text-sm mt-0.5">Lengkapi informasi mobil untuk ditambahkan ke daftar.</p>
         </div>
+    </div>
+
+    <!-- Form Card -->
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+        <form action="{{ route('admin.cars.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            @csrf
+
+            <!-- Nama Mobil -->
+            <div class="space-y-2">
+                <label for="nama_mobil" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Nama Mobil</label>
+                <input type="text" name="nama_mobil" id="nama_mobil" value="{{ old('nama_mobil') }}" placeholder="Contoh: Toyota Avanza" class="w-full px-4 py-3 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:focus:ring-indigo-500 transition-all text-sm @error('nama_mobil') border-rose-500 @enderror" required>
+                @error('nama_mobil')
+                    <p class="text-rose-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Warna & Tahun Produksi -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label for="warna" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Warna Mobil</label>
+                    <input type="text" name="warna" id="warna" value="{{ old('warna') }}" placeholder="Contoh: Hitam" class="w-full px-4 py-3 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:focus:ring-indigo-500 transition-all text-sm @error('warna') border-rose-500 @enderror" required>
+                    @error('warna')
+                        <p class="text-rose-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="space-y-2">
+                    <label for="tahun" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Tahun Produksi</label>
+                    <input type="number" name="tahun" id="tahun" value="{{ old('tahun') }}" placeholder="Contoh: 2022" class="w-full px-4 py-3 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:focus:ring-indigo-500 transition-all text-sm @error('tahun') border-rose-500 @enderror" required>
+                    @error('tahun')
+                        <p class="text-rose-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Jenis Mobil -->
+                <div class="space-y-2">
+                    <label for="jenis_mobil" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Jenis Mobil</label>
+                    <select name="jenis_mobil" id="jenis_mobil" class="w-full px-4 py-3 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:focus:ring-indigo-500 transition-all text-sm @error('jenis_mobil') border-rose-500 @enderror" required>
+                        <option value="">-- Pilih Jenis --</option>
+                        <option value="MPV" {{ old('jenis_mobil') == 'MPV' ? 'selected' : '' }}>MPV</option>
+                        <option value="SUV" {{ old('jenis_mobil') == 'SUV' ? 'selected' : '' }}>SUV</option>
+                        <option value="City Car" {{ old('jenis_mobil') == 'City Car' ? 'selected' : '' }}>City Car</option>
+                        <option value="Sedan" {{ old('jenis_mobil') == 'Sedan' ? 'selected' : '' }}>Sedan</option>
+                    </select>
+                    @error('jenis_mobil')
+                        <p class="text-rose-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Status Mobil -->
+                <div class="space-y-2">
+                    <label for="status" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Status Mobil</label>
+                    <select name="status" id="status" class="w-full px-4 py-3 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:focus:ring-indigo-500 transition-all text-sm @error('status') border-rose-500 @enderror" required>
+                        <option value="Tersedia" {{ old('status', 'Tersedia') == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
+                        <option value="Disewa" {{ old('status') == 'Disewa' ? 'selected' : '' }}>Disewa</option>
+                    </select>
+                    @error('status')
+                        <p class="text-rose-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Harga Sewa -->
+            <div class="space-y-2">
+                <label for="harga_sewa_per_hari" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Harga Sewa Per Hari (Rupiah)</label>
+                <div class="relative flex items-center">
+                    <span class="absolute left-4 text-slate-400 dark:text-slate-500 text-sm font-semibold">Rp</span>
+                    <input type="number" name="harga_sewa_per_hari" id="harga_sewa_per_hari" value="{{ old('harga_sewa_per_hari') }}" placeholder="Contoh: 350000" class="w-full pl-12 pr-4 py-3 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 dark:focus:ring-indigo-500 transition-all text-sm @error('harga_sewa_per_hari') border-rose-500 @enderror" required>
+                </div>
+                @error('harga_sewa_per_hari')
+                    <p class="text-rose-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Upload Gambar -->
+            <div class="space-y-2">
+                <label for="gambar" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Foto Mobil (Opsional)</label>
+                <input type="file" name="gambar" id="gambar" accept="image/*" class="w-full px-4 py-2.5 border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-950 focus:outline-none focus:border-indigo-500 transition-all text-sm @error('gambar') border-rose-500 @enderror">
+                <p class="text-slate-400 dark:text-slate-500 text-xs">Format file yang diterima: JPG, JPEG, PNG, WEBP. Maksimal ukuran 10MB.</p>
+                @error('gambar')
+                    <p class="text-rose-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-md shadow-indigo-500/10">
+                Simpan Mobil Baru
+            </button>
+        </form>
     </div>
 </div>
 @endsection

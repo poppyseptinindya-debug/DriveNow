@@ -12,10 +12,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('car_id')->constrained('cars')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->date('rental_date');
-            $table->integer('days');
-            $table->decimal('total_price', 10, 2);
-            $table->enum('status', ['pending', 'approved', 'completed', 'cancelled'])->default('pending');
+            $table->date('tanggal_sewa');
+            $table->integer('lama_sewa');
+            $table->integer('total_harga');
+            $table->enum('status_penyewaan', ['menunggu_konfirmasi', 'menunggu_pembayaran', 'menunggu_pengambilan', 'sedang_disewa', 'selesai', 'ditolak'])->default('menunggu_konfirmasi');
+            $table->enum('metode_pembayaran', ['Transfer Bank', 'Cash']);
+            $table->string('bukti_transfer')->nullable();
+            $table->integer('rating')->nullable();
+            $table->text('review')->nullable();
             $table->timestamps();
         });
     }
