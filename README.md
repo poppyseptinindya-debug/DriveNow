@@ -11,6 +11,7 @@ Program Studi Sistem Informasi Fakultas Ilmu Komputer - Universitas Jember
 Demo Video: *https://youtu.be/SoxV-tCwr2I*
 
 **Tujuan Pengembangan**
+
 DriveNow dikembangkan untuk:
 - Mempermudah pelanggan dalam mencari dan melakukan pemesanan mobil secara online dari mana saja dan kapan saja.
 - Mengotomatisasi pemantauan status ketersediaan armada kendaraan secara transparan.
@@ -20,7 +21,9 @@ DriveNow dikembangkan untuk:
 - Mendukung digitalisasi dan modernisasi layanan jasa transportasi mandiri agar lebih efisien dan terstruktur.
 
 **Fitur Utama**
+
 Fitur Pelanggan 
+
 * **Autentikasi**
   * Registrasi
   * Login akun
@@ -49,6 +52,7 @@ Fitur Pelanggan
   * Mengirim pesan saran, kritik, atau masukan langsung ke admin melalui form kontak
 
 Fitur Admin
+
 * **Autentikasi**
   * Login khusus admin
   * Logout akun
@@ -74,6 +78,7 @@ Fitur Admin
   * Menghapus pesan saran/kritik
 
 **Struktur Database**
+
 Database DriveNow terdiri dari beberapa tabel utama berikut:
 - **`users`** : Menyimpan data akun pengguna dengan peran (*role*) sebagai `admin` atau `customer`.
 - **`cars`** : Menyimpan data unit mobil (nama mobil, jenis mobil seperti MPV/SUV/Sedan/City Car, harga sewa per hari, warna, tahun, gambar, dan status ketersediaan).
@@ -81,6 +86,7 @@ Database DriveNow terdiri dari beberapa tabel utama berikut:
 - **`contacts`** : Menyimpan pesan masukan, saran, dan kritik yang dikirimkan oleh pengunjung/pelanggan.
 
 **Status Penyewaan**
+
 Sistem menggunakan beberapa status transaksi penyewaan untuk memantau proses rental mobil:
 - **`menunggu_konfirmasi`** : Tahap awal setelah customer mengajukan pemesanan sewa.
 - **`menunggu_pembayaran`** : Permintaan disetujui admin dan menunggu customer melakukan pembayaran (jika Transfer Bank).
@@ -91,5 +97,5 @@ Sistem menggunakan beberapa status transaksi penyewaan untuk memantau proses ren
 
 🔐 Akun Akses Default
 * **Admin**
-  * Email: `admin@drivenow.com`
+  * Email: `admin@gmail.com`
   * Password: `password`
