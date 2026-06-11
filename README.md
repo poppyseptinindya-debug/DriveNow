@@ -1,4 +1,4 @@
-# DriveNow - Sistem Booking Rental Mobil Berbasis Website
+# DriveNow - Sistem Informasi Penyewaan Mobil Berbasis Website
 
 DriveNow adalah platform reservasi rental mobil berbasis web yang dirancang untuk mempermudah proses pemesanan kendaraan secara online. Sistem ini memungkinkan pelanggan untuk mengeksplorasi katalog mobil yang tersedia secara real-time, melakukan booking dengan menentukan tanggal dan durasi sewa, memilih metode pembayaran (Transfer Bank atau Cash), mengunggah bukti pembayaran, serta memberikan rating dan ulasan setelah penyewaan selesai.
 
